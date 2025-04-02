@@ -23,7 +23,7 @@ export default function Home() {
       </main>
       <footer className="mx-auto margin-top w-fit mb-[19px]">
         <div className="flex flex-col items-center h-fit w-fit gap-3">
-          <div className="h-[40px] flex items-center gap-2 w-fit">
+          <a href="/" className="h-[40px] flex items-center gap-2 w-fit">
             <div className="relative h-full w-[20px] overflow-hidden">
               <Image
                 alt="logo"
@@ -34,7 +34,7 @@ export default function Home() {
               />
             </div>
             <BrandName />
-          </div>
+          </a>
         <p className="font-poppins font-normal text-xs text-center w-fit">© 2025 Ligft Media All rights reserved.</p>
         </div>
       </footer>

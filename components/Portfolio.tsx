@@ -10,7 +10,7 @@ const Portfolio = () => {
   const [isHover, setIsHover] = useState(false);
   const [translate, setTranslate] = useState(0);
 
-  const [cards, _] = useState<PortFolio[]>([
+  const [cards, _ ] = useState<PortFolio[]>([
     ...portfolio,
     ...portfolio,
     ...portfolio,
@@ -30,7 +30,7 @@ const Portfolio = () => {
     const interval = setInterval(() => {
       setTranslate((prev) => {
         if (!isHover) {
-          return prev -5;
+          return prev -2;
         } else {
           return prev;
         }
@@ -61,9 +61,7 @@ const Portfolio = () => {
       </div>
       <div
         className={`w-fit h-auto mt-[30px] md:mt-[70px] lg:mt-[100px] flex items-center gap-5 transition-transform ease-linear`}
-
         style={{transform:`translateX(${translate}px)`}}
-
       >
         {cards.map(({ image, title, subTitle, tags, targetUrl }, index) => (
           <PortFolioCard
