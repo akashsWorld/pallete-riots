@@ -3,6 +3,7 @@ import WorkCard from "./WorkCard";
 import constants from "@/utility/constants";
 const WorkFields = () => {
     const {workCards} = constants;
+    
   return (
     <div id="services" className="margin-top h-fit horizontal-margin">
       <div className="heading">

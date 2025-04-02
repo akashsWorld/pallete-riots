@@ -1,10 +1,14 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import constants from "@/utility/constants";
 import Image from "next/image";
 import star from "@/public/star.svg";
+import { WorkCard } from "@/utility/constants";
 const WorkStrip = () => {
   const { workCards } = constants;
-  const items = [
+
+
+  const [items, setItems] = useState<WorkCard[]>([
     ...workCards,
     ...workCards,
     ...workCards,
@@ -15,13 +19,31 @@ const WorkStrip = () => {
     ...workCards,
     ...workCards,
     ...workCards,
-    ...workCards,
-  ];
+    ...workCards,]);  
+
+  const [translate, setTranslate] = useState(0);
+
+
+  useEffect(() => {
+    setInterval(() => {
+      setTranslate(pre=>{
+        return pre-1;
+      });
+    }, 10);
+
+    setInterval(() => {
+      setTranslate(0);
+    },40000);
+  }, []);
+
 
   return (
     <div className="w-full h-[125px] md:h-[200px] lg:h-[310px] xl:h-[391px] flex flex-col justify-center items-center overflow-clip">
       <div className="w-[105vw] h-[50px] md:h-[70px] lg:h-[100px] gradient-bg -rotate-6 origin-center mt-[28px] relative ">
-        <div className="h-full w-fit strip-animation flex items-center gap-3 translate-center">
+        <div 
+        style={{transform:`translateX(${translate}px)`}}
+        className="h-full w-fit strip-animation flex items-center gap-3 ease-linear transition-transform">
+      
           {items.map((eachCard, index) => {
             return (
               <div

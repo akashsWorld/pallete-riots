@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import React from "react";
 import PortFolioCard from "./PortFolioCard";
 import constants, { PortFolio } from "@/utility/constants";
@@ -8,18 +8,9 @@ const Portfolio = () => {
   const { portfolio } = constants;
 
   const [isHover, setIsHover] = useState(false);
-
   const [translate, setTranslate] = useState(0);
 
-  const [dragStart, setDragStart] = useState(0);
-
-  const [previousDragging, setPreviousDragging] = useState(0);  
-
-  const [isDragging, setIsDragging] = useState(false);
-
-  const [translateFinal, setTranslateFinal] = useState(0);
-
-  const cards = [
+  const [cards, _] = useState<PortFolio[]>([
     ...portfolio,
     ...portfolio,
     ...portfolio,
@@ -31,29 +22,23 @@ const Portfolio = () => {
     ...portfolio,
     ...portfolio,
     ...portfolio,
-  ];
-
-  const onDragStart = (eve: React.DragEvent) => {
-    setTranslateFinal(translate);
-    setDragStart(eve.clientX);
-  };
-
-  const onDrag = (eve: React.DragEvent) => {
-    const draging = eve.clientX - dragStart;
-    setTranslate(draging + translateFinal);
-  };
-
-  const onDragEnd = (eve: React.DragEvent) => {
-    setIsDragging(false);
-    setTranslateFinal(translate);
-  };
-
+    ...portfolio,
+    ...portfolio,
+    ...portfolio,
+    ...portfolio,
+    ...portfolio,
+    ...portfolio,
+    ...portfolio,
+    ...portfolio,
+    ...portfolio,
+    ...portfolio,
+  ]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTranslate((prev) => {
         if (!isHover) {
-          return prev - 1;
+          return prev - 5;
         } else {
           return prev;
         }
@@ -62,6 +47,12 @@ const Portfolio = () => {
 
     return () => clearInterval(interval);
   }, [isHover]);
+
+  useEffect(() => {
+    setInterval(() => {
+      setTranslate(0);
+    },60000);
+  }, []);
 
   return (
     <div
@@ -80,20 +71,19 @@ const Portfolio = () => {
         className={`w-fit h-auto mt-[30px] md:mt-[70px] lg:mt-[100px] flex items-center gap-5 transition-transform ease-linear`}
         style={{ transform: `translateX(${translate}px)` }}
       >
-        {cards.map((eachPortFolio, index) => (
+        {cards.map(({ image, title, subTitle, tags, targetUrl }, index) => (
           <PortFolioCard
-          className="transition-transform ease-out"
+            className={`transition-transform ease-linear`}
             onMouseOver={() => setIsHover(true)}
-            key={index}
-            image={eachPortFolio.image}
-            title={eachPortFolio.title +` ${index}`}
-            subTitle={eachPortFolio.subTitle}
-            tags={eachPortFolio.tags}
-            onDragStart={onDragStart}
-            onDrag={onDrag}
-            onDragEnd={onDragEnd}
             onMouseLeave={() => setIsHover(false)}
-            isDragging={isDragging}
+            onClick={() => {
+              setIsHover((pre) => !pre);
+            }}
+            key={index}
+            image={image}
+            title={title}
+            subTitle={subTitle}
+            tags={tags}
           />
         ))}
       </div>

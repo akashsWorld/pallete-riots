@@ -11,36 +11,29 @@ const PortFolioCard = ({
   tags,
   className,
   onMouseOver,
-  onDragStart,
-  onDrag,
-  onDragEnd,
   onMouseLeave,
-  isDragging
+  onClick,
+  styles,
+  targetUrl
 }: {
   image: StaticImageData;
   title: string;
   subTitle: string;
   tags: string[];
   className?: string;
+  styles?:{transform:string};
+  targetUrl?:string
   onMouseOver?: () => void;
-  onDragStart?:(eve:React.DragEvent)=>void
-  onDrag?:(eve:React.DragEvent)=>void,
-  onDragEnd?:(eve:React.DragEvent)=>void,
   onMouseLeave?: () => void;
-  isDragging?:boolean
-
+  onClick?: () => void;
 }) => {
   return (
     <div
-    draggable
-
-    onDragStart={(eve) => onDragStart && onDragStart(eve)}
-    onDrag={(eve)=> onDrag && onDrag(eve)}
-    onDragEnd={(eve) => onDragEnd && onDragEnd(eve)}
+    style={styles}
     onMouseOver={() => onMouseOver && onMouseOver()}
     onMouseLeave={() => onMouseLeave && onMouseLeave()}
-
-      className={`h-[420px] md:h-[560px] lg:h-[614px] md:w-[450px] lg:w-[590px] p-[10px] md:p-[20px] lg:p-[30px] border-2 border-[#e4e4e4] rounded-[20px] flex flex-col items-center ${className} ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
+    onClick={() => onClick && onClick()}
+      className={`h-[420px] md:h-[560px] lg:h-[614px] md:w-[450px] lg:w-[590px] p-[10px] md:p-[20px] lg:p-[30px] border-2 border-[#e4e4e4] rounded-[20px] flex flex-col items-center ${className}`}
     >
       <div className="w-full">
         <div className="w-full h-[197px] md:h-[280px] lg:h-[397px] overflow-hidden rounded-[20px] aspect-square">
@@ -52,10 +45,10 @@ const PortFolioCard = ({
             className="object-cover w-full h-full"
           />
         </div>
-        <p className="font-outfit text-lg md:text-[22px] lg:text-2xl font-medium cursor-pointer">{subTitle}</p>
+        <a href={targetUrl} className="font-outfit text-lg md:text-[22px] lg:text-2xl font-medium cursor-pointer">{subTitle}</a>
       </div>
       <div className="flex justify-between h-auto w-full ">
-        <h4 className="text-[22px] md:text-3xl lg:text-[40px] font-semibold font-outfit cursor-pointer ">{title}</h4>
+        <a href={targetUrl} className="text-[22px] md:text-3xl lg:text-[40px] font-semibold font-outfit cursor-pointer ">{title}</a>
         <span className="rounded-full w-[30px] h-[30px]  md:w-[40px] md:h-[40px] lg:w-[64px] lg:h-[64px] bg-black flex items-center justify-center cursor-pointer">
           <MdArrowOutward className="text-white text-xl md:text-lg" />
         </span>
