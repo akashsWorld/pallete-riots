@@ -35,7 +35,7 @@ const Portfolio = () => {
           return prev;
         }
       });
-    }, 16);
+    }, 30);
 
     return () => clearInterval(interval);
   }, [isHover]);
