@@ -23,7 +23,7 @@ const Contact = () => {
       id="contacts"
       className="h-fit rounded-[30px] gradient-bg text-white flex flex-col items-center margin-top horizontal-margin"
     >
-      <div className="my-[70px] flex items-center flex-col mx-auto gap-[79px] w-full">
+      <div className="my-[34px] md:my-[70px] flex items-center flex-col mx-auto gap-[31px] md:gap-[79px] w-full">
         <div className="flex flex-col items-center w-fit mx-auto">
           <h2 className="font-outfit text-[30px] md:text-[40px] lg:text-[50px] font-medium text-center">
             Its your time to take off!
@@ -60,7 +60,7 @@ const Contact = () => {
           <Input
             type="textarea"
             placeholder="Give us a quick brief of your requirement"
-            className="mt-[24px] w-full h-[210px]"
+            className="mt-[24px] w-full h-[163px] md:h-[210px]"
             value={mailData.mailBody}
             onChangeHandle={(data) =>
               setMailData((pre) => {
@@ -77,11 +77,11 @@ const Contact = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-8">
+        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8">
           <ContactInfo
             icon={< FaWhatsapp/>}
             details={`+91 ${whatsappNumber}`}
-            target={`tel:${whatsappNumber}`}
+            target={`https://wa.me/${whatsappNumber}`}
           />
           <ContactInfo
             icon={<MdOutlineEmail />}

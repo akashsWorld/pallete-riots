@@ -29,7 +29,8 @@ const constants: ConstantType = {
         'Brand Identity',
         'Logo Design',
         'Business Card Design'
-      ]
+      ],
+      targetUrl:'https://medium.com/@business_7608/palette-riots-the-birth-of-a-bold-identity-094fb7a7af47'
     },
     {
       image:cryptoWallet,

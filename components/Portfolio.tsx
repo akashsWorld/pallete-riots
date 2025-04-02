@@ -23,22 +23,14 @@ const Portfolio = () => {
     ...portfolio,
     ...portfolio,
     ...portfolio,
-    ...portfolio,
-    ...portfolio,
-    ...portfolio,
-    ...portfolio,
-    ...portfolio,
-    ...portfolio,
-    ...portfolio,
-    ...portfolio,
-    ...portfolio,
+    ...portfolio
   ]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTranslate((prev) => {
         if (!isHover) {
-          return prev - 5;
+          return prev -5;
         } else {
           return prev;
         }
@@ -69,7 +61,9 @@ const Portfolio = () => {
       </div>
       <div
         className={`w-fit h-auto mt-[30px] md:mt-[70px] lg:mt-[100px] flex items-center gap-5 transition-transform ease-linear`}
-        style={{ transform: `translateX(${translate}px)` }}
+
+        style={{transform:`translateX(${translate}px)`}}
+
       >
         {cards.map(({ image, title, subTitle, tags, targetUrl }, index) => (
           <PortFolioCard
@@ -84,6 +78,7 @@ const Portfolio = () => {
             title={title}
             subTitle={subTitle}
             tags={tags}
+            targetUrl={targetUrl}
           />
         ))}
       </div>

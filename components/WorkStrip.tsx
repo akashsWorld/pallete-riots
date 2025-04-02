@@ -8,7 +8,7 @@ const WorkStrip = () => {
   const { workCards } = constants;
 
 
-  const [items, setItems] = useState<WorkCard[]>([
+  const [items, _] = useState<WorkCard[]>([
     ...workCards,
     ...workCards,
     ...workCards,
@@ -27,7 +27,7 @@ const WorkStrip = () => {
   useEffect(() => {
     setInterval(() => {
       setTranslate(pre=>{
-        return pre-1;
+        return pre-4;
       });
     }, 10);
 
